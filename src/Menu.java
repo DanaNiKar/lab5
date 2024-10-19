@@ -1,6 +1,6 @@
 import java.util.Scanner;
-public class menu {
-    public static int menu() {
+public class Menu {
+    public static int Menu() {
         int selection;
         Scanner input = new Scanner(System.in);
         System.out.println("Выберите действие");
@@ -15,6 +15,5 @@ public class menu {
 
         selection = input.nextInt();
         return selection;
-
     }
 }

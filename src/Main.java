@@ -13,47 +13,49 @@ public class Main {
 
     public static void main(String[] args) {
         int userChoice;
-        userChoice = menu.menu();
+        userChoice = Menu.Menu();
 
         while (userChoice < 6) {
+
             try {
+
                 switch (userChoice) {
                     case 1:
                         System.out.println("Вы решили добавить пустое дерево");
                         addEmptyTree();
-                        userChoice = menu.menu();
+                        userChoice = Menu.Menu();
                         break;
                     case 2:
                         System.out.println("Вы решили добавить дерево с данными");
                         addTreeWithInf();
-                        userChoice = menu.menu();
+                        userChoice = Menu.Menu();
                         break;
                     case 3:
                         System.out.println("Вы решили отредактировать данные");
                         editTree();
-                        userChoice = menu.menu();
+                        userChoice = Menu.Menu();
                         break;
                     case 4:
                         System.out.println("Вы решили вывести информацию");
                         displayTrees();
-                        userChoice = menu.menu();
+                        userChoice = Menu.Menu();
                         break;
                     case 5:
                         System.out.println("Вы решили отсортировать");
                         sortByAge();
-                        userChoice = menu.menu();
+                        userChoice = Menu.Menu();
                         break;
                     default:
                         System.out.println("Вы ввели не то");
                         break;
                 }
+
             } catch (InputMismatchException e) {
                 System.out.println("Ошибка: Необходимо ввести числовое значение");
                 scanner.nextLine();
             }
         }
     }
-
 
     //метод, добавляющий пустое дерево
     private static void addEmptyTree() {
@@ -63,6 +65,7 @@ public class Main {
 
     //метод, добавляющий дерево с информацией
     private static void addTreeWithInf() {
+
         try {
             System.out.print("Введите возраст дерева: ");
             int age = scanner.nextInt();
@@ -93,6 +96,7 @@ public class Main {
 
         System.out.print("Необходимо ввести индекс дерева (от 0 до " + (forest.size() - 1) + "): ");
         int index = scanner.nextInt();
+
         if (index < 0 || index >= forest.size()) {
             System.out.println("Неверный индекс");
             return;
@@ -108,6 +112,7 @@ public class Main {
         scanner.nextLine();
 
         try {
+
             switch (choice) {
                 case 1:
                     System.out.println("Введите новый возраст: ");
@@ -129,6 +134,7 @@ public class Main {
                     System.out.println("Неверный выбор");
             }
             System.out.println("Дерево успешно отредактировано");
+
         } catch (InvalidAgeEx | InvalidHeightEx e) {
             System.out.println("Ошибка при редактировании: " + e.getMessage());
             throw new RuntimeException("Ошибка при редактировании: ", e); // повторное генерирование исключения и связывание в цепочку
@@ -144,7 +150,6 @@ public class Main {
         for (int i = 0; i < forest.size(); i++) {
             Tree tree = forest.get(i);
             tree.displayInfo(i);
-
             //вывод дополнительной функции на основе известных значений
             System.out.println("Зрелое ли дереве: " + ((tree.isMature()) ? "Да" : "Нет"));
             System.out.println();
@@ -157,10 +162,10 @@ public class Main {
             System.out.println("Деревьев нет");
             return;
         }
-        //сортировка
-        forest.sort(Comparator.comparingInt(Tree::getAge));
-        //отображение
-        for (int i = 0; i < forest.size(); i++) {
+
+        forest.sort(Comparator.comparingInt(Tree::getAge)); //сортировка
+
+        for (int i = 0; i < forest.size(); i++) { //отображение
             Tree tree = forest.get(i);
             tree.displayInfo(i);
         }
