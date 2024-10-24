@@ -1,6 +1,6 @@
-//исключение - высота
-class InvalidHeightEx extends Exception {
-    public InvalidHeightEx(String message) {
-        super(message);
-    }
+  /** исключение, относящееся к высоте */
+class InvalidHeightEx extends Exception  {
+  public InvalidHeightEx(String message)  {
+    super(message);
+  }
 }
